@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.shape.Circle?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.scolaris.controller.DashboardController"
+            prefHeight="800.0" prefWidth="1200.0">
+
+    <!-- Sidebar -->
+    <left>
+        <VBox fx:id="sidebar" spacing="15" alignment="TOP_CENTER" styleClass="sidebar" prefWidth="75">
+            <!-- Logo -->
+            <StackPane>
+                <ImageView fitWidth="40.0" fitHeight="40.0" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/082614f8-20ca-47ee-bf37-830ce2681cfe.png" />
+                    </image>
+                </ImageView>
+            </StackPane>
+            
+            <Region prefHeight="30"/>
+            
+            <!-- Icons -->
+            <Button fx:id="homeBtn" text="Tableau de bord" styleClass="sidebar-btn, sidebar-btn-active" onAction="#handleLoadHome" alignment="CENTER_LEFT" maxWidth="Infinity" contentDisplay="GRAPHIC_ONLY" graphicTextGap="15">
+                <graphic><StackPane minWidth="30" maxWidth="30" alignment="CENTER"><FontAwesomeIconView glyphName="TH_LARGE" size="20" styleClass="sidebar-icon"/></StackPane></graphic>
+            </Button>
+            <Button fx:id="studentsBtn" text="Gestion Étudiants" styleClass="sidebar-btn" onAction="#handleLoadStudents" alignment="CENTER_LEFT" maxWidth="Infinity" contentDisplay="GRAPHIC_ONLY" graphicTextGap="15">
+                <graphic><StackPane minWidth="30" maxWidth="30" alignment="CENTER"><FontAwesomeIconView glyphName="GRADUATION_CAP" size="20" styleClass="sidebar-icon"/></StackPane></graphic>
+            </Button>
+            <Button fx:id="teachersBtn" text="Gestion Enseignants" styleClass="sidebar-btn" onAction="#handleLoadTeachers" alignment="CENTER_LEFT" maxWidth="Infinity" contentDisplay="GRAPHIC_ONLY" graphicTextGap="15">
+                <graphic><StackPane minWidth="30" maxWidth="30" alignment="CENTER"><FontAwesomeIconView glyphName="USERS" size="20" styleClass="sidebar-icon"/></StackPane></graphic>
+            </Button>
+            <Button fx:id="modulesBtn" text="Mes Enseignements" styleClass="sidebar-btn" onAction="#handleLoadModules" alignment="CENTER_LEFT" maxWidth="Infinity" contentDisplay="GRAPHIC_ONLY" graphicTextGap="15">
+                <graphic><StackPane minWidth="30" maxWidth="30" alignment="CENTER"><FontAwesomeIconView glyphName="LIST_ALT" size="20" styleClass="sidebar-icon"/></StackPane></graphic>
+            </Button>
+            <Button fx:id="gradesBtn" text="Notes &amp; Bulletins" styleClass="sidebar-btn" onAction="#handleLoadGrades" alignment="CENTER_LEFT" maxWidth="Infinity" contentDisplay="GRAPHIC_ONLY" graphicTextGap="15">
+                <graphic><StackPane minWidth="30" maxWidth="30" alignment="CENTER"><FontAwesomeIconView glyphName="FILE_TEXT_ALT" size="20" styleClass="sidebar-icon"/></StackPane></graphic>
+            </Button>
+            <Button fx:id="certRequestsBtn" text="Demandes Certificats" styleClass="sidebar-btn" onAction="#handleLoadCertRequests" alignment="CENTER_LEFT" maxWidth="Infinity" contentDisplay="GRAPHIC_ONLY" graphicTextGap="15">
+                <graphic><StackPane minWidth="30" maxWidth="30" alignment="CENTER"><FontAwesomeIconView glyphName="FILE_TEXT" size="20" styleClass="sidebar-icon"/></StackPane></graphic>
+            </Button>
+            <Button fx:id="resourcesBtn" text="Mes Cours" styleClass="sidebar-btn" onAction="#handleLoadResources" alignment="CENTER_LEFT" maxWidth="Infinity" contentDisplay="GRAPHIC_ONLY" graphicTextGap="15">
+                <graphic><StackPane minWidth="30" maxWidth="30" alignment="CENTER"><FontAwesomeIconView glyphName="FOLDER_OPEN" size="20" styleClass="sidebar-icon"/></StackPane></graphic>
+            </Button>
+            <Button fx:id="usersBtn" text="Gestion Comptes" styleClass="sidebar-btn" onAction="#handleLoadUsers" alignment="CENTER_LEFT" maxWidth="Infinity" contentDisplay="GRAPHIC_ONLY" graphicTextGap="15">
+                <graphic><StackPane minWidth="30" maxWidth="30" alignment="CENTER"><FontAwesomeIconView glyphName="COG" size="20" styleClass="sidebar-icon"/></StackPane></graphic>
+            </Button>
+            
+            <Region VBox.vgrow="ALWAYS" />
+            
+            <Button text="Déconnexion" styleClass="sidebar-btn" onAction="#handleLogout" alignment="CENTER_LEFT" maxWidth="Infinity" contentDisplay="GRAPHIC_ONLY" graphicTextGap="15">
+                <graphic><StackPane minWidth="30" maxWidth="30" alignment="CENTER"><FontAwesomeIconView glyphName="SIGN_OUT" size="20" styleClass="sidebar-icon"/></StackPane></graphic>
+            </Button>
+        </VBox>
+    </left>
+
+    <!-- Main Content Area for Routing -->
+    <center>
+        <StackPane fx:id="contentArea" />
+    </center>
+
+</BorderPane>

@@ -22,3 +22,35 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# Keep the Maven Wrapper jar
+!.mvn/wrapper/maven-wrapper.jar
+
+# Build output
+target/
+out/
+bin/
+build/
+
+# Logs
+logs/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+nbproject/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local configuration / secrets (see db.properties.example)
+db.properties
+src/main/resources/db.properties
+
+# Runtime uploads (user files, may contain personal data)
+resources/modules/

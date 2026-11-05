@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<VBox spacing="24" style="-fx-padding: 40;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.scolaris.controller.StudentHomeController">
+    
+    <!-- Top Bar -->
+    <HBox alignment="CENTER_LEFT" spacing="20">
+        <Label text="Mon Espace Académique" styleClass="header-title" />
+        <Region HBox.hgrow="ALWAYS" />
+        
+        <!-- Notification Bell -->
+        <StackPane fx:id="notificationBellContainer" style="-fx-cursor: hand;" onMouseClicked="#handleOpenNotificationsPopup">
+            <StackPane style="-fx-padding: 5;" mouseTransparent="true">
+                <FontAwesomeIconView glyphName="BELL" size="18" fill="#0D9488" />
+            </StackPane>
+            <StackPane fx:id="badgeContainer" alignment="TOP_RIGHT" visible="false" mouseTransparent="true">
+                <Label fx:id="badgeCountLabel" text="0" 
+                       style="-fx-background-color: #f43f5e; -fx-text-fill: white; -fx-font-size: 9px; -fx-font-weight: bold; -fx-background-radius: 50; -fx-padding: 1 4; -fx-translate-x: 6; -fx-translate-y: -6;"/>
+            </StackPane>
+        </StackPane>
+        
+        <!-- Profile Card -->
+        <HBox fx:id="userProfileContainer" onMouseClicked="#handleOpenProfilePopup" alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: white; -fx-padding: 5 15; -fx-background-radius: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 8, 0, 0, 3); -fx-cursor: hand;">
+            <StackPane fx:id="topProfileImageContainer">
+                <Circle radius="16" fill="#0D9488" />
+                <FontAwesomeIconView glyphName="GRADUATION_CAP" fill="white" size="14" />
+            </StackPane>
+            <VBox alignment="CENTER_LEFT">
+                <Label fx:id="profileNameLabel" text="Chargement..." style="-fx-font-weight: bold; -fx-text-fill: #101828; -fx-font-size: 12px;" />
+                <Label fx:id="profileCneLabel" text="-" style="-fx-font-size: 10px; -fx-text-fill: #667085;" />
+            </VBox>
+        </HBox>
+    </HBox>
+
+    <!-- Welcome Banner -->
+    <HBox styleClass="banner" alignment="CENTER_LEFT" spacing="20">
+        <VBox spacing="12" HBox.hgrow="ALWAYS">
+            <Label text="Bienvenue dans votre Espace Scolaire !" styleClass="banner-title" wrapText="true" />
+        </VBox>
+    </HBox>
+    
+    <!-- Info Section (Profile Details) -->
+    <VBox styleClass="section-card" spacing="10">
+        <Label text="Mes Informations Personnelles" style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #0D9488;" />
+        <GridPane hgap="25" vgap="10">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="25"/>
+                <ColumnConstraints percentWidth="25"/>
+                <ColumnConstraints percentWidth="25"/>
+                <ColumnConstraints percentWidth="25"/>
+            </columnConstraints>
+            <Label text="Nom complet:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold; -fx-text-fill: #667085;" />
+            <Label fx:id="fullNameLabel" text="-" GridPane.columnIndex="1" GridPane.rowIndex="0" style="-fx-text-fill: #101828; -fx-font-weight: bold;" />
+
+            <Label text="CNE (Identifiant):" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-font-weight: bold; -fx-text-fill: #667085;" />
+            <Label fx:id="cneLabel" text="-" GridPane.columnIndex="3" GridPane.rowIndex="0" style="-fx-text-fill: #101828; -fx-font-weight: bold;" />
+
+            <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold; -fx-text-fill: #667085;" />
+            <Label fx:id="emailLabel" text="-" GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-text-fill: #101828;" />
+
+            <Label text="Téléphone:" GridPane.columnIndex="2" GridPane.rowIndex="1" style="-fx-font-weight: bold; -fx-text-fill: #667085;" />
+            <Label fx:id="phoneLabel" text="-" GridPane.columnIndex="3" GridPane.rowIndex="1" style="-fx-text-fill: #101828;" />
+        </GridPane>
+    </VBox>
+
+    <!-- Stat Cards Grid -->
+    <HBox spacing="20">
+        <!-- Moyenne générale -->
+        <VBox styleClass="stat-card-blue" HBox.hgrow="ALWAYS" spacing="5">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Moyenne Générale" styleClass="stat-title" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+                <StackPane styleClass="stat-icon-wrapper-blue">
+                    <FontAwesomeIconView glyphName="LINE_CHART" fill="white" size="14" />
+                </StackPane>
+            </HBox>
+            <Label fx:id="averageLabel" text="0.00 / 20" styleClass="stat-value" />
+        </VBox>
+        
+        <!-- Modules Validés -->
+        <VBox styleClass="stat-card-green" HBox.hgrow="ALWAYS" spacing="5">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Modules Validés" styleClass="stat-title" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+                <StackPane styleClass="stat-icon-wrapper-green">
+                    <FontAwesomeIconView glyphName="CHECK_CIRCLE" fill="white" size="14" />
+                </StackPane>
+            </HBox>
+            <Label fx:id="validatedModulesLabel" text="0" styleClass="stat-value" />
+        </VBox>
+        
+        <!-- Cours inscrits -->
+        <VBox styleClass="stat-card-pink" HBox.hgrow="ALWAYS" spacing="5">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Matières Suivies" styleClass="stat-title" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+                <StackPane styleClass="stat-icon-wrapper-pink">
+                    <FontAwesomeIconView glyphName="FOLDER_OPEN" fill="white" size="14" />
+                </StackPane>
+            </HBox>
+            <Label fx:id="enrolledCoursesLabel" text="0" styleClass="stat-value" />
+        </VBox>
+        
+        <!-- Décision de l'année -->
+        <VBox styleClass="stat-card-orange" HBox.hgrow="ALWAYS" spacing="5">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Statut de l'Année" styleClass="stat-title" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+                <StackPane styleClass="stat-icon-wrapper-orange">
+                    <FontAwesomeIconView glyphName="INFO_CIRCLE" fill="white" size="14" />
+                </StackPane>
+            </HBox>
+            <Label fx:id="statusLabel" text="-" styleClass="stat-value" />
+        </VBox>
+    </HBox>
+
+    <!-- Bottom Section -->
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
+        <!-- Recent Grades (Left) -->
+        <VBox styleClass="section-card" HBox.hgrow="ALWAYS" spacing="15">
+            <Label text="Évaluations Récentes" styleClass="section-title" />
+            <TableView fx:id="recentGradesTable" VBox.vgrow="ALWAYS">
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                </columnResizePolicy>
+                <columns>
+                    <TableColumn fx:id="colSubName" text="Matière" prefWidth="180" />
+                    <TableColumn fx:id="colEvalType" text="Type d'Évaluation" prefWidth="120" />
+                    <TableColumn fx:id="colGradeValue" text="Note" prefWidth="80" />
+                    <TableColumn fx:id="colGradeDate" text="Date de Saisie" prefWidth="120" />
+                </columns>
+            </TableView>
+        </VBox>
+        
+        <!-- Annonces & Contacts (Right) -->
+        <VBox spacing="20" prefWidth="350">
+            <VBox styleClass="section-card" spacing="12" VBox.vgrow="ALWAYS">
+                <Label text="Annonces Administratives" styleClass="section-title" />
+                <Separator/>
+                <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;" VBox.vgrow="ALWAYS">
+                    <VBox fx:id="announcementsBox" spacing="10" />
+                </ScrollPane>
+            </VBox>
+        </VBox>
+    </HBox>
+</VBox>

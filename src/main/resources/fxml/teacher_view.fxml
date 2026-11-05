@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<VBox spacing="24" style="-fx-padding: 40;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.scolaris.controller.TeacherController">
+    
+    <HBox alignment="CENTER_LEFT">
+        <Label text="Gestion des Enseignants" styleClass="header-title" />
+    </HBox>
+
+    <!-- Form Section -->
+    <HBox spacing="20" styleClass="section-card">
+        <GridPane hgap="15" vgap="15" HBox.hgrow="ALWAYS">
+            <Label text="CIN:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="cinField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+            <Label text="Prénom:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+            <TextField fx:id="firstNameField" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+
+            <Label text="Nom:" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+            <TextField fx:id="lastNameField" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+
+            <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <Label text="Téléphone:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="phoneField" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+
+            <Label text="Spécialité:" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <TextField fx:id="specialtyField" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            
+            <HBox spacing="10" alignment="CENTER_RIGHT" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.columnSpan="2">
+                <Button text="Vider" onAction="#clearForm" styleClass="btn-secondary" minWidth="-Infinity">
+                    <graphic><FontAwesomeIconView glyphName="UNDO" fill="white" size="13"/></graphic>
+                </Button>
+                <Button text="Supprimer" onAction="#handleDelete" styleClass="btn-danger" minWidth="-Infinity">
+                    <graphic><FontAwesomeIconView glyphName="TRASH" fill="white" size="13"/></graphic>
+                </Button>
+                <Button fx:id="saveButton" text="Ajouter" onAction="#handleSave" styleClass="btn-success" minWidth="-Infinity">
+                    <graphic><FontAwesomeIconView glyphName="PLUS" fill="white" size="13"/></graphic>
+                </Button>
+            </HBox>
+        </GridPane>
+    </HBox>
+
+    <Label fx:id="messageLabel" styleClass="error-label" visible="false" />
+
+    <!-- Table Section -->
+    <VBox styleClass="section-card" VBox.vgrow="ALWAYS" spacing="10">
+        <TableView fx:id="teacherTable" styleClass="table-view" VBox.vgrow="ALWAYS">
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="50">
+                    <cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colCin" text="CIN" prefWidth="120">
+                    <cellValueFactory><PropertyValueFactory property="cin" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colFirstName" text="Prénom" prefWidth="150">
+                    <cellValueFactory><PropertyValueFactory property="firstName" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colLastName" text="Nom" prefWidth="150">
+                    <cellValueFactory><PropertyValueFactory property="lastName" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colEmail" text="Email" prefWidth="200">
+                    <cellValueFactory><PropertyValueFactory property="email" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colPhone" text="Téléphone" prefWidth="150">
+                    <cellValueFactory><PropertyValueFactory property="phone" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colSpecialty" text="Spécialité" prefWidth="150">
+                    <cellValueFactory><PropertyValueFactory property="specialty" /></cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </VBox>
+</VBox>

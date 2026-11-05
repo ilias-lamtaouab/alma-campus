@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<VBox spacing="24" style="-fx-padding: 40;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.scolaris.controller.TeacherModuleController">
+
+    <HBox alignment="CENTER_LEFT">
+        <Label text="Mes Matières &amp; Ressources" styleClass="header-title" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Label fx:id="teacherNameLabel" style="-fx-text-fill: #667085; -fx-font-size: 13px;" />
+    </HBox>
+
+    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent;">
+
+        <!-- MATIERES TAB -->
+        <Tab text="Mes Matières">
+            <VBox spacing="15" style="-fx-padding: 20 0 0 0;">
+                <VBox styleClass="section-card" spacing="10" VBox.vgrow="ALWAYS">
+                    <TableView fx:id="subjectTable" VBox.vgrow="ALWAYS">
+                        <columnResizePolicy>
+                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                        </columnResizePolicy>
+                        <columns>
+                            <TableColumn fx:id="colSubName" text="Matière" prefWidth="200">
+                                <cellValueFactory><PropertyValueFactory property="name" /></cellValueFactory>
+                            </TableColumn>
+                            <TableColumn fx:id="colSubCoef" text="Coefficient" prefWidth="100">
+                                <cellValueFactory><PropertyValueFactory property="coefficient" /></cellValueFactory>
+                            </TableColumn>
+                            <TableColumn fx:id="colSubMod" text="Module" prefWidth="200" />
+                            <TableColumn fx:id="colSubSem" text="Semestre" prefWidth="100" />
+                        </columns>
+                    </TableView>
+                </VBox>
+            </VBox>
+        </Tab>
+
+        <!-- RESSOURCES TAB -->
+        <Tab text="Ressources Pédagogiques">
+            <HBox spacing="20" style="-fx-padding: 20 0 0 0;">
+                <!-- Resources Table (Left) -->
+                <VBox styleClass="section-card" HBox.hgrow="ALWAYS" spacing="10">
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="Fichiers et Annonces" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #101828;" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button text="Nouvelle Ressource" onAction="#handleNewResource" styleClass="btn-primary">
+                            <graphic><FontAwesomeIconView glyphName="PLUS" fill="white" size="12"/></graphic>
+                        </Button>
+                    </HBox>
+                    <TableView fx:id="resourceTable" VBox.vgrow="ALWAYS">
+                        <columnResizePolicy>
+                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                        </columnResizePolicy>
+                        <columns>
+                            <TableColumn fx:id="colResTitle" text="Titre" prefWidth="180" />
+                            <TableColumn fx:id="colResDesc" text="Description" prefWidth="200" />
+                            <TableColumn fx:id="colResModule" text="Module" prefWidth="130" />
+                            <TableColumn fx:id="colResFile" text="Fichier" prefWidth="120" />
+                            <TableColumn fx:id="colResDate" text="Date" prefWidth="130" />
+                            <TableColumn fx:id="colResActions" text="Actions" prefWidth="100" />
+                        </columns>
+                    </TableView>
+                </VBox>
+
+                <!-- Resource Form (Right) -->
+                <VBox styleClass="section-card" prefWidth="380" spacing="15" fx:id="resourceForm" visible="false">
+                    <Label text="Ajouter une Ressource" styleClass="section-title" />
+
+                    <VBox spacing="5">
+                        <Label text="Module:" />
+                        <ComboBox fx:id="moduleComboBox" promptText="Sélectionnez un module" maxWidth="Infinity" />
+                    </VBox>
+                    <VBox spacing="5">
+                        <Label text="Titre:" />
+                        <TextField fx:id="titleField" promptText="Titre de la ressource" />
+                    </VBox>
+                    <VBox spacing="5">
+                        <Label text="Description:" />
+                        <TextArea fx:id="descField" promptText="Description optionnelle" prefRowCount="3" wrapText="true" />
+                    </VBox>
+                    <VBox spacing="5">
+                        <Label text="Fichier (optionnel):" />
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <TextField fx:id="filePathField" promptText="Aucun fichier sélectionné" editable="false" HBox.hgrow="ALWAYS" />
+                            <Button text="Parcourir" onAction="#handleBrowseFile" styleClass="btn-secondary" />
+                        </HBox>
+                    </VBox>
+
+                    <Label fx:id="messageLabel" styleClass="error-label" visible="false" />
+
+                    <HBox spacing="10" alignment="CENTER_RIGHT">
+                        <Button text="Annuler" onAction="#handleCancelResource" styleClass="btn-secondary">
+                            <graphic><FontAwesomeIconView glyphName="TIMES" fill="white" size="12"/></graphic>
+                        </Button>
+                        <Button text="Enregistrer" onAction="#handleSaveResource" styleClass="btn-success">
+                            <graphic><FontAwesomeIconView glyphName="SAVE" fill="white" size="12"/></graphic>
+                        </Button>
+                    </HBox>
+                </VBox>
+            </HBox>
+        </Tab>
+
+    </TabPane>
+</VBox>

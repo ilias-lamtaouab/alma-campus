@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<VBox spacing="24" style="-fx-padding: 40;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.scolaris.controller.StudentPersonalController">
+    
+    <!-- Notification Banner (Green Alert Box) -->
+    <HBox fx:id="notificationBanner" alignment="CENTER_LEFT" spacing="12" 
+          style="-fx-background-color: #D1FAE5; -fx-padding: 10 15; -fx-background-radius: 8; -fx-border-color: #6EE7B7; -fx-border-width: 1;"
+          visible="false" managed="false">
+        <FontAwesomeIconView glyphName="BELL" fill="#065F46" size="16" />
+        <Label text="Félicitations ! Votre demande de certificat de scolarité a été acceptée. Téléchargez-le dans l'onglet dédié." 
+               style="-fx-text-fill: #065F46; -fx-font-weight: bold; -fx-font-size: 13px;" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Button text="Fermer" onAction="#handleCloseBanner" style="-fx-background-color: transparent; -fx-text-fill: #065F46; -fx-font-weight: bold; -fx-cursor: hand;" />
+    </HBox>
+
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Label text="Mon Espace Universitaire" styleClass="header-title" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Button text="Se Déconnecter" onAction="#handleLogout" styleClass="btn-danger" minWidth="-Infinity">
+            <graphic><FontAwesomeIconView glyphName="SIGN_OUT" fill="white" size="14"/></graphic>
+        </Button>
+    </HBox>
+
+    <HBox spacing="20">
+        <!-- Profile Card -->
+        <VBox styleClass="section-card" HBox.hgrow="ALWAYS" spacing="15">
+            <HBox spacing="20" alignment="CENTER_LEFT">
+                <StackPane>
+                    <Circle radius="35" fill="rgba(91,77,182,0.1)" />
+                    <ImageView fx:id="avatarImage" fitWidth="75" fitHeight="75" preserveRatio="true">
+                        <image>
+                            <Image url="@../images/student_3d.png" />
+                        </image>
+                    </ImageView>
+                </StackPane>
+                <VBox spacing="5" alignment="CENTER_LEFT">
+                    <Label text="Mes Informations Personnelles" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #0D9488;" />
+                </VBox>
+            </HBox>
+            <GridPane hgap="15" vgap="10">
+                <Label text="Nom &amp; Prénom:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;" />
+                <Label fx:id="nameLabel" text="-" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                <Label text="CNE (Identifiant):" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-font-weight: bold;" />
+                <Label fx:id="cneLabel" text="-" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+
+                <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;" />
+                <Label fx:id="emailLabel" text="-" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <Label text="Téléphone:" GridPane.columnIndex="2" GridPane.rowIndex="1" style="-fx-font-weight: bold;" />
+                <Label fx:id="phoneLabel" text="-" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            </GridPane>
+        </VBox>
+
+        <!-- Summary & Decision Card -->
+        <VBox styleClass="section-card" prefWidth="350" spacing="12" alignment="CENTER">
+            <Label text="Moyenne Générale" style="-fx-font-size: 12px; -fx-text-fill: #667085; -fx-font-weight: bold;" />
+            <Label fx:id="generalAverageLabel" text="0.00 / 20" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #0D9488;" />
+            <HBox spacing="10" alignment="CENTER">
+                <Label text="Statut de l'Année :" style="-fx-font-weight: bold; -fx-text-fill: #101828;" />
+                <Label fx:id="decisionLabel" text="-" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-padding: 3 8; -fx-background-radius: 5;" />
+            </HBox>
+        </VBox>
+    </HBox>
+
+    <!-- TabPane for Grades vs Certificates -->
+    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS" styleClass="section-card" style="-fx-padding: 5;">
+        <tabs>
+            <Tab text="Résultats Académiques">
+                <VBox spacing="15" style="-fx-padding: 15;">
+                    <TableView fx:id="detailsTable" VBox.vgrow="ALWAYS">
+                        <columnResizePolicy>
+                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                        </columnResizePolicy>
+                        <columns>
+                            <TableColumn fx:id="colModCode" text="Code Module" prefWidth="100" />
+                            <TableColumn fx:id="colModName" text="Nom Module" prefWidth="220" />
+                            <TableColumn fx:id="colSubName" text="Matière" prefWidth="180" />
+                            <TableColumn fx:id="colSubCoef" text="Coef" prefWidth="60" />
+                            <TableColumn fx:id="colCC" text="Note CC" prefWidth="80" />
+                            <TableColumn fx:id="colProject" text="Note Projet" prefWidth="80" />
+                            <TableColumn fx:id="colExam" text="Note Examen" prefWidth="80" />
+                            <TableColumn fx:id="colSubAvg" text="Moyenne" prefWidth="90" />
+                            <TableColumn fx:id="colModAvg" text="Moy. Mod" prefWidth="90" />
+                            <TableColumn fx:id="colValidation" text="Validation" prefWidth="80" />
+                        </columns>
+                    </TableView>
+                    
+                    <HBox alignment="CENTER_RIGHT">
+                        <Button text="Demander un Document" onAction="#handleRequestDocument" styleClass="btn-primary">
+                            <graphic><FontAwesomeIconView glyphName="FILE_TEXT" fill="white" size="14"/></graphic>
+                        </Button>
+                    </HBox>
+                </VBox>
+            </Tab>
+            
+            <Tab text="Demandes de Documents">
+                <VBox spacing="15" style="-fx-padding: 15;">
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="Mes demandes de documents académiques" style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #101828;" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button text="Nouvelle Demande" onAction="#handleNewRequest" styleClass="btn-primary">
+                            <graphic><FontAwesomeIconView glyphName="PLUS" fill="white" size="14"/></graphic>
+                        </Button>
+                    </HBox>
+                    
+                    <TableView fx:id="requestTable" VBox.vgrow="ALWAYS">
+                        <columnResizePolicy>
+                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                        </columnResizePolicy>
+                        <columns>
+                            <TableColumn fx:id="colReqDate" text="Date de Demande" prefWidth="120" />
+                            <TableColumn fx:id="colDocType" text="Type de Document" prefWidth="180" />
+                            <TableColumn fx:id="colReqStatus" text="Statut" prefWidth="120" />
+                            <TableColumn fx:id="colReqAppDate" text="Date de Validation" prefWidth="120" />
+                            <TableColumn fx:id="colReqAction" text="Téléchargement" prefWidth="150" />
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+        </tabs>
+    </TabPane>
+
+</VBox>

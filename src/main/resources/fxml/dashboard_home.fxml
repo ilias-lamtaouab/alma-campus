@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<VBox spacing="30" style="-fx-padding: 40;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.scolaris.controller.DashboardHomeController">
+    <!-- Top Bar -->
+    <HBox alignment="CENTER_LEFT" spacing="20">
+        <Label text="Tableau de bord" styleClass="header-title" />
+        <Region HBox.hgrow="ALWAYS" />
+        <HBox alignment="CENTER_LEFT" spacing="10" styleClass="search-box">
+            <FontAwesomeIconView glyphName="SEARCH" fill="#0D9488" />
+            <TextField fx:id="searchField" promptText="Rechercher un étudiant..." styleClass="search-field" prefWidth="280" />
+        </HBox>
+        <Region prefWidth="20" />
+        <Button style="-fx-background-color: transparent; -fx-cursor: hand;">
+            <graphic><FontAwesomeIconView glyphName="ENVELOPE" size="18" fill="#667085" /></graphic>
+        </Button>
+        <StackPane fx:id="notificationBellContainer" style="-fx-cursor: hand;" onMouseClicked="#handleOpenNotificationsPopup">
+            <StackPane style="-fx-padding: 5;" mouseTransparent="true">
+                <FontAwesomeIconView glyphName="BELL" size="18" fill="#667085" />
+            </StackPane>
+            <StackPane fx:id="badgeContainer" alignment="TOP_RIGHT" visible="false" mouseTransparent="true">
+                <Label fx:id="badgeCountLabel" text="0" 
+                       style="-fx-background-color: #E31A1A; -fx-text-fill: white; -fx-font-size: 9px; -fx-font-weight: bold; -fx-background-radius: 50; -fx-padding: 1 4; -fx-translate-x: 6; -fx-translate-y: -6;"/>
+            </StackPane>
+        </StackPane>
+        <HBox fx:id="userProfileContainer" alignment="CENTER_LEFT" spacing="10" style="-fx-cursor: hand;" onMouseClicked="#handleOpenProfilePopup">
+
+    <ImageView fx:id="topProfileImage" fitWidth="42" fitHeight="42">
+        <image>
+            <Image url="@../images/student_3d.png"/>
+        </image>
+        <clip>
+            <Circle radius="21" centerX="21" centerY="21"/>
+        </clip>
+    </ImageView>
+
+    <VBox alignment="CENTER_LEFT">
+        <Label fx:id="topProfileName" text="Oualid AIT BAMOUSSA"
+               style="-fx-font-weight: bold; -fx-text-fill: #101828;"/>
+        <Label fx:id="topProfileRole" text="System Admin"
+               style="-fx-font-size: 11px; -fx-text-fill: #667085;"/>
+    </VBox>
+
+    <FontAwesomeIconView glyphName="ANGLE_DOWN" fill="#667085"/>
+
+</HBox>
+    </HBox>
+    <!-- Banner -->
+<!-- Banner -->
+    <!-- Banner -->
+   <HBox styleClass="banner" alignment="CENTER_LEFT" prefHeight="150">
+    <VBox spacing="10" HBox.hgrow="ALWAYS" alignment="CENTER_LEFT">
+        <Label text="Bienvenue sur Alma Campus," styleClass="banner-title" />
+        <Label text="Naviguez vers le futur de l'éducation avec le logiciel." styleClass="banner-text" />
+        <Button text="Learn More" styleClass="banner-btn" />
+    </VBox>
+    <ImageView fitHeight="150" preserveRatio="true">
+        <image>
+            <Image url="@../images/banner-girl.png.png"/>
+        </image>
+        <HBox.margin>
+            <Insets right="20.0" />
+        </HBox.margin>
+    </ImageView>
+</HBox>
+    
+    <!-- Stat Cards Grid -->
+    <HBox spacing="20">
+        <VBox styleClass="stat-card-blue" HBox.hgrow="ALWAYS" spacing="5">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Total Étudiants" styleClass="stat-title" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+                <StackPane styleClass="stat-icon-wrapper-blue">
+                    <FontAwesomeIconView glyphName="USERS" fill="white" size="14" />
+                </StackPane>
+            </HBox>
+            <Label fx:id="totalStudentsLabel" text="0" styleClass="stat-value" />
+        </VBox>
+        
+        <VBox styleClass="stat-card-green" HBox.hgrow="ALWAYS" spacing="5">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Total Enseignants" styleClass="stat-title" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+                <StackPane styleClass="stat-icon-wrapper-green">
+                    <FontAwesomeIconView glyphName="USER_MD" fill="white" size="14" />
+                </StackPane>
+            </HBox>
+            <Label fx:id="totalTeachersLabel" text="0" styleClass="stat-value" />
+        </VBox>
+        
+        <VBox styleClass="stat-card-pink" HBox.hgrow="ALWAYS" spacing="5">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Total Matières" styleClass="stat-title" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+                <StackPane styleClass="stat-icon-wrapper-pink">
+                    <FontAwesomeIconView glyphName="FOLDER_OPEN" fill="white" size="14" />
+                </StackPane>
+            </HBox>
+            <Label fx:id="totalSubjectsLabel" text="0" styleClass="stat-value" />
+        </VBox>
+        
+        <VBox styleClass="stat-card-orange" HBox.hgrow="ALWAYS" spacing="5">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Moyenne École" styleClass="stat-title" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+                <StackPane styleClass="stat-icon-wrapper-orange">
+                    <FontAwesomeIconView glyphName="LINE_CHART" fill="white" size="14" />
+                </StackPane>
+            </HBox>
+            <Label fx:id="schoolAverageLabel" text="0.0" styleClass="stat-value" />
+        </VBox>
+    </HBox>
+
+    <!-- Bottom Section -->
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
+        <VBox styleClass="section-card" HBox.hgrow="ALWAYS" spacing="15">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Derniers Inscrits" styleClass="section-title" />
+            </HBox>
+            <TableView fx:id="studentTable" styleClass="table-view" VBox.vgrow="ALWAYS">
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                </columnResizePolicy>
+                <columns>
+                    <TableColumn fx:id="colCne" text="CNE" prefWidth="120">
+                        <cellValueFactory><PropertyValueFactory property="cne" /></cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="colFirstName" text="Prénom" prefWidth="150">
+                        <cellValueFactory><PropertyValueFactory property="firstName" /></cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="colLastName" text="Nom" prefWidth="150">
+                        <cellValueFactory><PropertyValueFactory property="lastName" /></cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="colStatus" text="Statut" prefWidth="100">
+                        <cellValueFactory><PropertyValueFactory property="status" /></cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+        </VBox>
+        
+        <VBox spacing="20" prefWidth="350">
+            <VBox styleClass="section-card" spacing="10" VBox.vgrow="ALWAYS">
+                <Label text="Évolution des notes" styleClass="section-title" />
+                <StackPane fx:id="chartPane" prefHeight="250" />
+            </VBox>
+        </VBox>
+    </HBox>
+</VBox>

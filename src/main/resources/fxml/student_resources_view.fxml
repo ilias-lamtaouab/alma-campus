@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<VBox spacing="24" style="-fx-padding: 40;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.scolaris.controller.StudentResourcesController">
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <StackPane style="-fx-background-color: #F0FDFA; -fx-background-radius: 12; -fx-padding: 12;">
+            <javafx.scene.shape.SVGPath content="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" 
+                fill="TRANSPARENT" stroke="#0D9488" strokeWidth="1.8" strokeLineCap="ROUND" strokeLineJoin="ROUND" scaleX="1.2" scaleY="1.2" />
+        </StackPane>
+        <VBox spacing="3">
+            <Label text="Mes Cours" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #101828;" />
+            <Label text="Consultez l'ensemble des modules de votre formation" style="-fx-text-fill: #98A2B3; -fx-font-size: 13px;" />
+        </VBox>
+        <Region HBox.hgrow="ALWAYS" />
+    </HBox>
+
+    <VBox styleClass="section-card" spacing="12" VBox.vgrow="ALWAYS">
+        <HBox alignment="CENTER_LEFT" spacing="8">
+            <FontAwesomeIconView glyphName="LIST_UL" size="14" style="-fx-fill: #0D9488;"/>
+            <Label text="Mes Cours" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #101828;" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="moduleCountLabel" style="-fx-text-fill: #98A2B3; -fx-font-size: 12px;" />
+        </HBox>
+        <Separator />
+        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;">
+            <VBox fx:id="modulesContainer" spacing="8" style="-fx-padding: 2 0;" />
+        </ScrollPane>
+    </VBox>
+</VBox>

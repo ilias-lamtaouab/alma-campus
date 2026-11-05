@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<VBox spacing="24" style="-fx-padding: 40;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.scolaris.controller.UserManagementController">
+    
+    <HBox alignment="CENTER_LEFT">
+        <Label text="Gestion des Comptes Utilisateurs" styleClass="header-title" />
+    </HBox>
+
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
+        <!-- Accounts Table (Left) -->
+        <VBox styleClass="section-card" HBox.hgrow="ALWAYS" spacing="10">
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Liste des Utilisateurs" styleClass="section-title" />
+                <Region HBox.hgrow="ALWAYS" />
+                <HBox alignment="CENTER_LEFT" spacing="5" styleClass="search-box">
+                    <FontAwesomeIconView glyphName="SEARCH" fill="#9CA3AF" size="14"/>
+                    <TextField fx:id="searchField" promptText="Rechercher par nom d'utilisateur..." styleClass="search-field" prefWidth="250"/>
+                </HBox>
+            </HBox>
+            <TableView fx:id="userTable" VBox.vgrow="ALWAYS">
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                </columnResizePolicy>
+                <columns>
+                    <TableColumn fx:id="colUserId" text="ID" prefWidth="50">
+                        <cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="colUsername" text="Nom d'utilisateur" prefWidth="180">
+                        <cellValueFactory><PropertyValueFactory property="username" /></cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="colRole" text="Rôle" prefWidth="120">
+                        <cellValueFactory><PropertyValueFactory property="role" /></cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="colStatus" text="Statut" prefWidth="120">
+                        <cellValueFactory><PropertyValueFactory property="status" /></cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="colAction" text="Actions" prefWidth="180" />
+                </columns>
+            </TableView>
+        </VBox>
+
+        <!-- Admin Management Panel (Right) -->
+        <VBox styleClass="section-card" prefWidth="380" spacing="15">
+            <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent;">
+                <tabs>
+                    <!-- Create Account Tab -->
+                    <Tab text="Créer un Compte">
+                        <VBox spacing="15" style="-fx-padding: 15 0 0 0;">
+                            <VBox spacing="5">
+                                <Label text="Nom d'utilisateur:" />
+                                <TextField fx:id="usernameField" promptText="Identifiant de connexion" />
+                            </VBox>
+                            <VBox spacing="5">
+                                <Label text="Mot de passe:" />
+                                <PasswordField fx:id="passwordField" promptText="Mot de passe d'accès" />
+                            </VBox>
+                            <VBox spacing="5">
+                                <Label text="Rôle:" />
+                                <ComboBox fx:id="roleComboBox" promptText="Choisir le rôle" maxWidth="Infinity" />
+                            </VBox>
+
+                            <HBox spacing="10" alignment="CENTER_RIGHT">
+                                <Button text="Vider" onAction="#clearForm" styleClass="btn-secondary" minWidth="-Infinity">
+                                    <graphic><FontAwesomeIconView glyphName="UNDO" fill="white" size="13"/></graphic>
+                                </Button>
+                                <Button text="Créer" onAction="#handleCreateUser" styleClass="btn-primary" minWidth="-Infinity">
+                                    <graphic><FontAwesomeIconView glyphName="USER_PLUS" fill="white" size="13"/></graphic>
+                                </Button>
+                            </HBox>
+                        </VBox>
+                    </Tab>
+
+                    <!-- Broadcast Announcement Tab -->
+                    <Tab text="Diffuser Annonce">
+                        <VBox spacing="12" style="-fx-padding: 15 0 0 0;">
+                            <VBox spacing="5">
+                                <Label text="Destinataire (Cible):" />
+                                <ComboBox fx:id="notifTargetComboBox" promptText="Sélectionner la cible" maxWidth="Infinity" onAction="#handleTargetChange"/>
+                            </VBox>
+                            <VBox fx:id="notifUsernameContainer" spacing="5" visible="false" managed="false">
+                                <Label text="Identifiant Cible (CNE / CIN):" />
+                                <TextField fx:id="notifUsernameField" promptText="ex: EE1234 ou AB1234" />
+                            </VBox>
+                            <VBox spacing="5">
+                                <Label text="Titre de l'annonce:" />
+                                <TextField fx:id="notifTitleField" promptText="ex: Examen du Second Semestre" />
+                            </VBox>
+                            <VBox spacing="5">
+                                <Label text="Contenu de l'annonce:" />
+                                <TextArea fx:id="notifContentArea" promptText="Rédiger votre annonce..." prefHeight="100" wrapText="true" />
+                            </VBox>
+
+                            <HBox spacing="10" alignment="CENTER_RIGHT">
+                                <Button text="Vider" onAction="#clearNotifForm" styleClass="btn-secondary" minWidth="-Infinity">
+                                    <graphic><FontAwesomeIconView glyphName="UNDO" fill="white" size="13"/></graphic>
+                                </Button>
+                                <Button text="Diffuser" onAction="#handleSendNotification" styleClass="btn-success" minWidth="-Infinity">
+                                    <graphic><FontAwesomeIconView glyphName="PAPER_PLANE" fill="white" size="13"/></graphic>
+                                </Button>
+                            </HBox>
+                        </VBox>
+                    </Tab>
+                </tabs>
+            </TabPane>
+            
+            <Label fx:id="messageLabel" styleClass="error-label" visible="false" />
+        </VBox>
+    </HBox>
+
+</VBox>

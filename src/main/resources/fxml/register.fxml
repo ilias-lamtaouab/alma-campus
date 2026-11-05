@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.effect.DropShadow?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.scolaris.controller.RegisterController"
+           prefHeight="600.0" prefWidth="800.0"
+           style="-fx-background-color: linear-gradient(to bottom right, #0F2E2C, #0D9488);">
+
+    <VBox alignment="CENTER" maxWidth="480" maxHeight="700" spacing="12" styleClass="login-pane">
+        <!-- School Logo -->
+        <ImageView fitWidth="75.0" fitHeight="75.0" preserveRatio="true">
+            <image>
+                <Image url="@../images/082614f8-20ca-47ee-bf37-830ce2681cfe.png" />
+            </image>
+        </ImageView>
+
+        <VBox alignment="CENTER" spacing="4">
+            <Label text="Alma Campus — Inscription" styleClass="login-title" style="-fx-font-size: 24px;" />
+            <Label text="Créer un nouveau compte d'accès" styleClass="subtitle" />
+        </VBox>
+
+        <VBox spacing="6" alignment="CENTER_LEFT" maxWidth="Infinity">
+            <Label text="Nom d'utilisateur" styleClass="form-label" />
+            <TextField fx:id="usernameField" promptText="Choisissez un nom d'utilisateur" styleClass="login-field" maxWidth="Infinity" prefHeight="40.0" />
+        </VBox>
+
+        <VBox spacing="6" alignment="CENTER_LEFT" maxWidth="Infinity">
+            <Label text="Mot de passe" styleClass="form-label" />
+            <PasswordField fx:id="passwordField" promptText="Choisissez un mot de passe" styleClass="login-field" maxWidth="Infinity" prefHeight="40.0" />
+        </VBox>
+        
+        <VBox spacing="6" alignment="CENTER_LEFT" maxWidth="Infinity">
+            <Label text="Rôle" styleClass="form-label" />
+            <ComboBox fx:id="roleComboBox" promptText="Sélectionnez un rôle" styleClass="login-field" maxWidth="Infinity" prefHeight="40.0" />
+        </VBox>
+
+        <HBox spacing="10" maxWidth="Infinity">
+            <VBox spacing="6" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                <Label text="Prénom" styleClass="form-label" />
+                <TextField fx:id="firstNameField" promptText="Votre prénom" styleClass="login-field" maxWidth="Infinity" prefHeight="40.0" />
+            </VBox>
+            <VBox spacing="6" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                <Label text="Nom" styleClass="form-label" />
+                <TextField fx:id="lastNameField" promptText="Votre nom" styleClass="login-field" maxWidth="Infinity" prefHeight="40.0" />
+            </VBox>
+        </HBox>
+
+        <HBox spacing="10" maxWidth="Infinity">
+            <VBox spacing="6" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                <Label text="Email" styleClass="form-label" />
+                <TextField fx:id="emailField" promptText="Votre adresse email" styleClass="login-field" maxWidth="Infinity" prefHeight="40.0" />
+            </VBox>
+            <VBox spacing="6" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                <Label text="Téléphone" styleClass="form-label" />
+                <TextField fx:id="phoneField" promptText="Votre téléphone" styleClass="login-field" maxWidth="Infinity" prefHeight="40.0" />
+            </VBox>
+        </HBox>
+
+        <VBox fx:id="teacherSection" spacing="6" alignment="CENTER_LEFT" maxWidth="Infinity" visible="false" managed="false">
+            <Label text="Spécialité" styleClass="form-label" />
+            <TextField fx:id="specialtyField" promptText="Votre spécialité (ex: Mathématiques)" styleClass="login-field" maxWidth="Infinity" prefHeight="40.0" />
+        </VBox>
+
+        <VBox fx:id="moduleSection" spacing="6" alignment="CENTER_LEFT" maxWidth="Infinity" visible="false" managed="false">
+            <Label text="Module Associé" styleClass="form-label" />
+            <ComboBox fx:id="moduleComboBox" promptText="Sélectionnez votre module" styleClass="login-field" maxWidth="Infinity" prefHeight="40.0" />
+        </VBox>
+
+        <Label fx:id="messageLabel" styleClass="error-label" visible="false" />
+
+        <VBox spacing="12" maxWidth="Infinity" alignment="CENTER">
+            <Button text="S'inscrire" onAction="#handleRegister" styleClass="primary-btn" maxWidth="Infinity" prefHeight="42.0" />
+            <Hyperlink text="Déjà un compte ? Se connecter" onAction="#goToLogin" style="-fx-text-fill: #0D9488; -fx-font-weight: 700; -fx-font-family: 'Inter';" />
+        </VBox>
+    </VBox>
+
+</StackPane>

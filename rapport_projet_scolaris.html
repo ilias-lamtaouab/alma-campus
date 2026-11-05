@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Rapport de Projet JScolaris</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #000000; /* Texte en noir clair et net */
+            line-height: 1.6;
+            margin: 40px;
+        }
+        h1, h2, h3, h4 {
+            color: #1e293b; /* Bleu foncé très professionnel pour les titres */
+            font-weight: bold;
+        }
+        h1 { font-size: 24pt; text-align: center; border-bottom: 2px solid #1e293b; padding-bottom: 10px; }
+        h2 { font-size: 18pt; margin-top: 30px; border-bottom: 1px solid #cbd5e1; padding-bottom: 5px; }
+        h3 { font-size: 14pt; margin-top: 20px; }
+        p { font-size: 12pt; text-align: justify; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; margin-bottom: 20px; }
+        th, td { border: 1px solid #000000; padding: 10px; text-align: left; }
+        th { background-color: #f1f5f9; font-weight: bold; }
+        .placeholder {
+            display: block;
+            width: 100%;
+            padding: 40px;
+            margin: 20px 0;
+            background-color: #f8fafc;
+            border: 2px dashed #94a3b8;
+            text-align: center;
+            font-weight: bold;
+            color: #ef4444; /* Rouge pour attirer l'attention */
+        }
+        .caption {
+            text-align: center;
+            font-style: italic;
+            font-size: 11pt;
+            color: #475569;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>RAPPORT DE PROJET DE DÉVELOPPEMENT LOGICIEL</h1>
+    <h3 style="text-align: center;">Conception et Réalisation d'une Application Desktop de Gestion de Scolarité (JScolaris)</h3>
+    
+    <p><strong>Réalisé par :</strong> [Votre Nom/Prénom]</p>
+    <p><strong>Technologies :</strong> Java, JavaFX, MySQL</p>
+    <p><strong>Environnement de Développement :</strong> Visual Studio Code</p>
+
+    <h2>TABLE DES MATIÈRES</h2>
+    <ol>
+        <li>Introduction Générale</li>
+        <li>Technologies Utilisées</li>
+        <li>Architecture Générale</li>
+        <li>Analyse de la Base de Données</li>
+        <li>Modules de l'Application</li>
+        <li>Interfaces Utilisateur et Workflows</li>
+        <li>Analyse des Boutons et Fonctionnalités</li>
+        <li>Sécurité et Gestion des Données</li>
+        <li>Points Forts de l'Application</li>
+        <li>Conclusion</li>
+    </ol>
+
+    <h2>1. INTRODUCTION GÉNÉRALE</h2>
+    <h3>Contexte du Projet</h3>
+    <p>Dans l'ère numérique actuelle, la gestion administrative et pédagogique des établissements d'enseignement nécessite des outils robustes, rapides et intuitifs. Le projet <strong>JScolaris</strong> s'inscrit dans cette dynamique de transformation digitale en proposant une solution logicielle Desktop complète pour la gestion de la scolarité.</p>
+
+    <h3>Objectifs</h3>
+    <p>L'objectif principal de ce projet est de concevoir et développer une application de bureau performante permettant de centraliser les données scolaires. Les objectifs spécifiques incluent :</p>
+    <ul>
+        <li>La numérisation des dossiers étudiants et enseignants.</li>
+        <li>La gestion fluide des notes, des modules et des matières.</li>
+        <li>La mise en place d'un système de demande de documents administratifs (attestations, bulletins).</li>
+        <li>Le partage de ressources pédagogiques entre enseignants et étudiants.</li>
+    </ul>
+
+    <h3>Utilisateurs Cibles</h3>
+    <p>L'application cible trois types d'utilisateurs avec des droits d'accès distincts :</p>
+    <ol>
+        <li><strong>L'Administrateur</strong> : Supervise l'ensemble du système, gère les utilisateurs, les inscriptions et valide les demandes de documents.</li>
+        <li><strong>L'Enseignant</strong> : Gère ses modules, dépose des ressources pédagogiques et suit les matières qu'il enseigne.</li>
+        <li><strong>L'Étudiant</strong> : Consulte ses notes, télécharge les cours, suit ses enseignements et effectue des demandes de documents administratifs.</li>
+    </ol>
+
+    <h2>2. TECHNOLOGIES UTILISÉES</h2>
+    <p>Le développement de JScolaris repose sur une stack technologique moderne et éprouvée pour les applications de bureau :</p>
+
+    <h3>Java (JDK 17+)</h3>
+    <p>Le langage de programmation principal choisi est Java, reconnu pour sa robustesse, sa portabilité, son approche orientée objet stricte et sa vaste communauté. Il permet de garantir la stabilité de la logique métier et des interactions avec la base de données.</p>
+
+    <h3>JavaFX</h3>
+    <p>Pour la conception de l'Interface Utilisateur (UI), JavaFX a été préféré à Swing pour ses capacités graphiques avancées. JavaFX permet l'utilisation de fichiers FXML pour séparer la vue du contrôleur, et intègre le support du CSS pour un design moderne, réactif et esthétiquement plaisant.</p>
+
+    <h3>Base de données : MySQL</h3>
+    <p>Le stockage des données relationnelles est assuré par MySQL. Il offre une excellente gestion de l'intégrité référentielle, des performances élevées pour les requêtes complexes et une scalabilité adaptée aux besoins d'un établissement scolaire.</p>
+
+    <h3>Outils de Développement</h3>
+    <ul>
+        <li><strong>Visual Studio Code (VS Code)</strong> : L'éditeur de code utilisé pour le développement, avec les extensions Java Extension Pack et JavaFX pour une productivité optimale.</li>
+        <li><strong>Maven</strong> : Utilisé pour la gestion des dépendances (JDBC, BCrypt, FontAwesome) et la compilation du projet.</li>
+    </ul>
+
+    <h3>Bibliothèques et Frameworks</h3>
+    <ul>
+        <li><strong>BCrypt</strong> : Pour le hachage sécurisé des mots de passe.</li>
+        <li><strong>FontAwesome (de.jensd.fx.glyphs)</strong> : Pour l'intégration d'icônes vectorielles modernes dans l'interface utilisateur.</li>
+    </ul>
+
+    <h2>3. ARCHITECTURE GÉNÉRALE</h2>
+    <p>L'application respecte l'architecture logicielle <strong>MVC (Model-View-Controller)</strong> couplée avec le pattern <strong>DAO (Data Access Object)</strong>, garantissant un code propre, modulaire et maintenable.</p>
+
+    <h3>Structure du Projet</h3>
+    <ul>
+        <li><code>com.scolaris.model</code> : Contient les classes représentant les entités de la base de données (User, Student, Module, Grade, etc.).</li>
+        <li><code>com.scolaris.dao</code> : Contient les interfaces et implémentations pour l'accès aux données, encapsulant toutes les requêtes SQL (CRUD).</li>
+        <li><code>com.scolaris.service</code> : Contient la logique métier de l'application, servant de pont intermédiaire entre les contrôleurs et les DAO.</li>
+        <li><code>com.scolaris.controller</code> : Gère les interactions avec l'utilisateur et met à jour les vues JavaFX.</li>
+        <li><code>com.scolaris.util</code> : Utilitaires système comme la connexion à la base de données (Singleton) et le Seeder pour initialiser la base.</li>
+    </ul>
+
+    <h3>Flux de données (Data Flow)</h3>
+    <ol>
+        <li>L'utilisateur interagit avec la Vue (fichier FXML rendu par JavaFX).</li>
+        <li>Le Controller capte l'événement (ex: clic sur "Se connecter").</li>
+        <li>Le Controller appelle le Service correspondant (<code>AuthenticationService</code>).</li>
+        <li>Le Service applique la logique métier (vérification du statut, hachage) et interroge le DAO (<code>UserDao</code>).</li>
+        <li>Le DAO exécute la requête SQL via JDBC et retourne un Objet (Modèle) au Service, qui le remonte au Controller pour mettre à jour la Vue.</li>
+    </ol>
+
+    <h2>4. ANALYSE DE LA BASE DE DONNÉES</h2>
+    <p>La base de données relationnelle est conçue pour éviter la redondance et garantir l'intégrité des données grâce aux clés étrangères.</p>
+
+    <h3>Structure et Tables Principales</h3>
+    <ul>
+        <li><strong>users</strong> : Gère les comptes de connexion (<code>username</code>, <code>password_hash</code>, <code>role</code>, <code>status</code>).</li>
+        <li><strong>students</strong> : Dossiers des étudiants (<code>cne</code>, informations personnelles, date d'inscription).</li>
+        <li><strong>teachers</strong> : Dossiers des enseignants (<code>cin</code>, spécialité).</li>
+        <li><strong>modules</strong> : Les unités d'enseignement (ex: M1 - JAVA).</li>
+        <li><strong>subjects</strong> : Les matières spécifiques liées à un module et affectées à un enseignant.</li>
+        <li><strong>grades</strong> : Stocke les notes obtenues par les étudiants pour chaque matière.</li>
+        <li><strong>certificate_requests</strong> : Gère les demandes de documents administratifs avec un statut (PENDING, APPROVED, REJECTED).</li>
+        <li><strong>module_resources</strong> : Référence les fichiers (cours, TP, examens) uploadés par les enseignants.</li>
+        <li><strong>system_notifications</strong> : Conserve l'historique des alertes système envoyées aux utilisateurs.</li>
+    </ul>
+
+    <h2>5. MODULES DE L'APPLICATION</h2>
+
+    <h3>5.1. Module d'Authentification</h3>
+    <p><strong>Objectif :</strong> Sécuriser l'accès à l'application et diriger l'utilisateur vers le bon tableau de bord selon son rôle.</p>
+    
+    <div class="placeholder">[SUPPRIMEZ CE CADRE SOUS WORD ET COLLEZ LA CAPTURE D'ÉCRAN DE LA PAGE DE CONNEXION ICI]</div>
+    <div class="caption">Figure 1 : Interface de Connexion - Design moderne avec effet Glassmorphism.</div>
+
+    <p><strong>Fonctionnalités et Workflow :</strong></p>
+    <ul>
+        <li>L'utilisateur entre son nom d'utilisateur (CNE pour étudiant, CIN pour enseignant, ou "admin") et son mot de passe.</li>
+        <li>L'algorithme <strong>BCrypt</strong> vérifie le mot de passe haché.</li>
+        <li>En cas de succès, le système vérifie le rôle de l'utilisateur (<code>role</code>) et charge le fichier <code>dashboard.fxml</code>. Le menu latéral s'adapte dynamiquement pour n'afficher que les boutons autorisés pour ce rôle.</li>
+    </ul>
+
+    <h3>5.2. Module Espace Étudiant</h3>
+    <p>L'espace étudiant est conçu pour offrir une expérience utilisateur (UX) optimale, permettant à l'étudiant de suivre son parcours académique en toute simplicité.</p>
+
+    <h4>A. Tableau de Bord Étudiant</h4>
+    <div class="placeholder">[SUPPRIMEZ CE CADRE ET COLLEZ LA CAPTURE DU TABLEAU DE BORD ÉTUDIANT (Page Accueil)]</div>
+    <div class="caption">Figure 2 : Tableau de bord de l'étudiant affichant les statistiques globales.</div>
+    <p><strong>Analyse :</strong> Ce widget affiche un résumé rapide : le nombre de matières suivies, la moyenne générale estimée et le nombre de demandes de certificats en attente. L'interface inclut des animations de flottement sur la photo de profil pour une sensation de dynamisme.</p>
+
+    <h4>B. Mes Enseignements (Modules & Matières)</h4>
+    <div class="placeholder">[SUPPRIMEZ CE CADRE ET COLLEZ LA CAPTURE DE LA PAGE "MES ENSEIGNEMENTS"]</div>
+    <div class="caption">Figure 3 : Vue des matières et modules affectés à l'étudiant.</div>
+    <p><strong>Analyse :</strong> Affiche sous forme de tableau interactif la liste des matières, le module d'appartenance, le coefficient et le nom de l'enseignant responsable. Cela permet à l'étudiant d'avoir une vue claire de son cursus.</p>
+
+    <h4>C. Demandes de Certificats (Nouveau Système)</h4>
+    <div class="placeholder">[SUPPRIMEZ CE CADRE ET COLLEZ LA CAPTURE DE LA PAGE "DEMANDES DE CERTIFICATS"]</div>
+    <div class="caption">Figure 4 : Interface de demande d'attestation ou de bulletin.</div>
+    <p><strong>Analyse :</strong> Le système de téléchargement direct a été remplacé par un système de demande administrative professionnel. L'étudiant choisit le type de document (Attestation, Bulletin). La demande passe en statut "EN ATTENTE" (Pending) jusqu'à ce que l'administrateur la valide.</p>
+
+    <h4>D. Mes Cours (Ressources Pédagogiques)</h4>
+    <div class="placeholder">[SUPPRIMEZ CE CADRE ET COLLEZ LA CAPTURE DE LA PAGE "MES COURS" AVEC LE FICHIER EXAMIN PHP VISIBLE]</div>
+    <div class="caption">Figure 5 : Interface des ressources avec système d'accordéon et icônes vectorielles.</div>
+    <p><strong>Analyse :</strong> Les modules sont présentés sous forme de cartes élégantes avec des badges "S3" (Semestre 3). Un clic sur le titre déploie un accordéon révélant les fichiers déposés. L'icône de téléchargement en SVG moderne ouvre automatiquement le fichier via le lecteur par défaut du système d'exploitation.</p>
+
+    <h3>5.3. Module Espace Enseignant</h3>
+    <p>Ce module est l'outil de travail du corps professoral pour la gestion pédagogique.</p>
+
+    <div class="placeholder">[SUPPRIMEZ CE CADRE ET COLLEZ LA CAPTURE DE L'ESPACE ENSEIGNANT (Quand un prof se connecte)]</div>
+    <div class="caption">Figure 6 : Interface de gestion pour l'enseignant.</div>
+    <p><strong>Fonctionnalités :</strong> Dépôt de ressources (fichiers PDF, Word) avec copie physique dans un dossier sécurisé (<code>resources/modules/ID/</code>) et suivi des matières enseignées.</p>
+
+    <h3>5.4. Module Espace Administrateur</h3>
+    <p>C'est le centre de contrôle de l'application, réservé au personnel de l'administration.</p>
+
+    <div class="placeholder">[SUPPRIMEZ CE CADRE ET COLLEZ LA CAPTURE DU DASHBOARD ADMINISTRATEUR]</div>
+    <div class="caption">Figure 7 : Tableau de bord d'administration.</div>
+    <p><strong>Fonctionnalités :</strong></p>
+    <ol>
+        <li><strong>Gestion des Utilisateurs :</strong> Création, modification, et blocage de comptes (statut "BLOCKED").</li>
+        <li><strong>Gestion des Étudiants et Enseignants :</strong> Ajout de profils, mise à jour des coordonnées.</li>
+        <li><strong>Traitement des Demandes :</strong> Visualisation des requêtes de documents des étudiants avec boutons "Approuver" ou "Rejeter".</li>
+        <li><strong>Gestion des Notes :</strong> Saisie centralisée des notes pour les examens et contrôles continus.</li>
+    </ol>
+
+    <h2>6. INTERFACES UTILISATEUR ET WORKFLOWS</h2>
+    
+    <h3>Design System et UI/UX</h3>
+    <p>L'application JScolaris a bénéficié d'une conception graphique visant un standard "Entreprise 2026" :</p>
+    <ul>
+        <li><strong>Couleurs :</strong> Utilisation de palettes premium (Deep Blue <code>#1e293b</code>, Indigo <code>#5b4db6</code>, Slate <code>#f8fafc</code>).</li>
+        <li><strong>Animations :</strong> Les boutons, les cartes de cours et la photo de profil intègrent des effets de survol fluides (Hover) et des micro-animations de flottement (TranslateTransition) qui rendent l'interface vivante.</li>
+        <li><strong>Menu Latéral (Sidebar) :</strong> Un menu de navigation persistant avec largeur dynamique offrant une expérience consistante.</li>
+    </ul>
+
+    <h2>7. ANALYSE DES BOUTONS ET FONCTIONNALITÉS CLÉS</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Bouton / Élément</th>
+                <th>Emplacement</th>
+                <th>Fonction</th>
+                <th>Résultat Attendu</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Connexion</strong></td>
+                <td>Écran de Login</td>
+                <td>Valider les identifiants</td>
+                <td>Redirection vers le Dashboard approprié.</td>
+            </tr>
+            <tr>
+                <td><strong>Mes Enseignements</strong></td>
+                <td>Sidebar Étudiant</td>
+                <td>Accès aux matières</td>
+                <td>Affiche la liste des cours de l'étudiant.</td>
+            </tr>
+            <tr>
+                <td><strong>Nouvelle Demande</strong></td>
+                <td>Demandes Certificats</td>
+                <td>Initier une requête</td>
+                <td>Ouvre une boîte de dialogue pour choisir le document.</td>
+            </tr>
+            <tr>
+                <td><strong>Icône Télécharger</strong></td>
+                <td>Cartes de Cours</td>
+                <td>Ouvrir un fichier</td>
+                <td>Le fichier PDF/Doc s'ouvre dans le lecteur natif de l'ordinateur.</td>
+            </tr>
+            <tr>
+                <td><strong>Déconnexion</strong></td>
+                <td>Sidebar (Bas)</td>
+                <td>Quitter la session</td>
+                <td>Retour sécurisé à l'écran de login.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>8. SÉCURITÉ ET GESTION DES DONNÉES</h2>
+    <ul>
+        <li><strong>Chiffrement des mots de passe :</strong> L'utilisation de <strong>BCrypt</strong> garantit qu'aucun mot de passe n'est stocké en clair dans la base de données.</li>
+        <li><strong>Protection des Routes (RBAC) :</strong> Le contrôleur principal <code>DashboardController</code> instancie dynamiquement les boutons du menu en fonction du rôle. Un étudiant ne peut physiquement pas voir ni cliquer sur le bouton d'administration.</li>
+        <li><strong>Intégrité Référentielle MySQL :</strong> L'utilisation de <code>ON DELETE CASCADE</code> assure que si un étudiant est supprimé, ses notes et demandes de certificats le sont également.</li>
+        <li><strong>Résolution Dynamique des Chemins :</strong> Le contrôleur résout dynamiquement le chemin <code>resources/modules/...</code> par rapport au répertoire courant (<code>user.dir</code>), ce qui permet au projet d'être déplacé sur n'importe quel ordinateur Windows sans casser les liens.</li>
+    </ul>
+
+    <h2>9. POINTS FORTS DE L'APPLICATION</h2>
+    <ol>
+        <li><strong>Expérience Utilisateur (UX) Exceptionnelle :</strong> Le design n'a rien à envier aux applications Web modernes grâce à une maîtrise poussée du CSS sous JavaFX.</li>
+        <li><strong>Architecture Logicielle Solide :</strong> La séparation stricte entre Vues (FXML), Contrôleurs, Services et Modèles (MVC) rend l'application hautement maintenable.</li>
+        <li><strong>Résolution Automatique de Problèmes (Self-Healing) :</strong> Le code Java intègre des scripts de migration (<code>DatabaseSeeder.java</code>) capables de détecter des incohérences de base de données et d'appliquer des corrections SQL automatiquement.</li>
+    </ol>
+
+    <h2>10. CONCLUSION</h2>
+    <p>Le projet <strong>JScolaris</strong> démontre une application concrète, complète et réussie des concepts avancés de l'ingénierie logicielle en Java. En partant d'un cahier des charges exigeant, l'application a été structurée pour répondre avec précision aux besoins réels de gestion d'un établissement scolaire.</p>
+    <p>Les objectifs initiaux ont été largement dépassés, tout particulièrement en ce qui concerne la qualité visuelle de l'interface qui offre un rendu "Entreprise Premium", ainsi que la robustesse des fonctionnalités en arrière-plan.</p>
+
+</body>
+</html>

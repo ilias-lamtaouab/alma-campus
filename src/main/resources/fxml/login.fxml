@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.effect.DropShadow?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.scolaris.controller.LoginController"
+           prefHeight="600.0" prefWidth="800.0"
+           style="-fx-background-color: linear-gradient(to bottom right, #0F2E2C, #0D9488);">
+
+    <VBox alignment="CENTER" maxWidth="420" maxHeight="520" spacing="20" styleClass="login-pane">
+        <!-- School Logo -->
+        <ImageView fitWidth="85.0" fitHeight="85.0" preserveRatio="true">
+            <image>
+                <Image url="@../images/082614f8-20ca-47ee-bf37-830ce2681cfe.png" />
+            </image>
+        </ImageView>
+
+        <VBox alignment="CENTER" spacing="5">
+            <Label text="Alma Campus" styleClass="login-title" />
+            <Label text="Portail de Gestion Académique" styleClass="subtitle" />
+        </VBox>
+
+        <VBox spacing="8" alignment="CENTER_LEFT" maxWidth="Infinity">
+            <Label text="Nom d'utilisateur" styleClass="form-label" />
+            <TextField fx:id="usernameField" promptText="Entrez votre nom d'utilisateur" styleClass="login-field" maxWidth="Infinity" prefHeight="42.0" />
+        </VBox>
+
+        <VBox spacing="8" alignment="CENTER_LEFT" maxWidth="Infinity">
+            <Label text="Mot de passe" styleClass="form-label" />
+            <PasswordField fx:id="passwordField" promptText="Entrez votre mot de passe" styleClass="login-field" maxWidth="Infinity" prefHeight="42.0" />
+        </VBox>
+
+        <Label fx:id="errorLabel" styleClass="error-label" visible="false" />
+
+        <VBox spacing="15" maxWidth="Infinity" alignment="CENTER">
+            <Button fx:id="loginButton" text="Se connecter" onAction="#handleLogin" styleClass="primary-btn" maxWidth="Infinity" prefHeight="42.0" />
+            <Hyperlink text="Créer un compte" onAction="#goToRegister" style="-fx-text-fill: #0D9488; -fx-font-weight: 700; -fx-font-family: 'Inter';" />
+        </VBox>
+    </VBox>
+
+</StackPane>
