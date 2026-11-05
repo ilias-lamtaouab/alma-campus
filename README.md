@@ -39,15 +39,34 @@ The project follows a layered **MVC + DAO** architecture to keep the user interf
 
 ## Screenshots
 
-> Screenshots will be added soon.
+> The user interface is in French, and **Scolaris** was the project's working name, so it appears throughout the screenshots.
 
-| Login | Admin Dashboard |
-|-------|-----------------|
-| ![Login](docs/screenshots/login.png) | ![Admin Dashboard](docs/screenshots/admin-dashboard.png) |
+### Login
+![Login screen](docs/screenshots/01-login.png)
 
-| Teacher View | Student View |
-|--------------|--------------|
-| ![Teacher](docs/screenshots/teacher.png) | ![Student](docs/screenshots/student.png) |
+*Secure sign-in for administrators, teachers and students.*
+
+### Admin dashboard
+![Admin dashboard](docs/screenshots/02-admin-dashboard.png)
+
+*Overview of students, teachers, subjects and the school-wide average.*
+
+### Student and teacher pages
+
+| Student dashboard | Student grades |
+|:---:|:---:|
+| ![Student dashboard](docs/screenshots/03-student-dashboard.png) | ![Student grades](docs/screenshots/04-student-grades.png) |
+| *Personal info, average and recent evaluations* | *Grades and validation status per module* |
+| **Student courses** | **Teacher dashboard** |
+| ![Student courses](docs/screenshots/05-student-courses.png) | ![Teacher dashboard](docs/screenshots/06-teacher-dashboard.png) |
+| *List of modules for the student's program* | *Assigned subjects, modules and resources* |
+
+### Design
+
+| PDF report card | Class diagram |
+|:---:|:---:|
+| ![PDF report card](docs/screenshots/07-report-card-pdf.png) | ![Class diagram](docs/screenshots/08-class-diagram.png) |
+| *Report card generated as a PDF* | *Domain model (User, Student, Teacher, Module, Subject, Grade, ...)* |
 
 ---
 
